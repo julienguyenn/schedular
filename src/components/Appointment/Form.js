@@ -23,6 +23,7 @@ export default function Form(props) {
       setError("Student name cannot be blank")
       return;
     }
+    setError("");
     props.onSave(name, value);
   }
 
@@ -46,7 +47,6 @@ export default function Form(props) {
           interviewers={props.interviewers} 
           onChange={setInterviewer}
           value={value} />
-           
       </section>
       <section className="appointment__card-right">
         <section className="appointment__actions">
