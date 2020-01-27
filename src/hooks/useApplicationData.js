@@ -70,7 +70,7 @@ export default function useApplicationData() {
       [id]: appointment
     };
 
-    return axios.put(`http://localhost:8001/api/appointments/${id}`, {interview})
+    return axios.put(`/api/appointments/${id}`, {interview})
       .then( (res, err) => {
         if (!interview.interviewer || !interview.student) {
           throw(err)
