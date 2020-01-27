@@ -3,6 +3,7 @@ import InterviewerListItem from "./InterviewerListItem";
 import "./InterviewerList.scss";
 import PropTypes from 'prop-types';
 
+
 export default function InterviewerList(props) {
   const interviewers = props.interviewers.map(interviewer => {
     return (
@@ -25,7 +26,7 @@ export default function InterviewerList(props) {
   )
 }
 
-InterviewerList.PropTypes = {
+InterviewerList.propTypes = {
   onChange: PropTypes.func.isRequired,
   value: PropTypes.number
 };
