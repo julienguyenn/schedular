@@ -6,6 +6,9 @@ getByTestId } from "@testing-library/react";
 
 import Application from "components/Application";
 
+import axios from "axios";
+
+
 afterEach(cleanup);
 
 describe("Application", () => {
@@ -97,8 +100,60 @@ describe("Application", () => {
     await waitForElement(() => getAllByAltText(container, "Edit"))
 
     const monday = getAllByTestId(container, "day").find(day => 
-      queryByText(day, "Monday")
+      queryByText(day, "Monday") 
     )
     expect(getByText(monday, "1 spot remaining")).toBeInTheDocument();
   })
+
+  it("shows the save error when failing to save an appointment", async () => {
+    axios.put.mockRejectedValueOnce("Error");
+    const { container } = render(<Application />);
+
+    await waitForElement(() => getByText(container, "Archie Cohen"));
+    const appointments = getAllByTestId(container, "appointment");
+    const appointment = appointments[0];
+
+    fireEvent.click(getAllByTestId(container, "addButton")[0]);
+
+    const input = getByPlaceholderText(container,"Enter Student Name");
+  
+    fireEvent.change(input, { target: { value: "Julie Nguyen" } });
+
+    fireEvent.click(getByAltText(appointment, "Sylvia Palmer"));
+
+    fireEvent.click(getByText(container, "Save"));
+
+    expect(getByText(container, "Saving")).toBeInTheDocument();
+
+    await waitForElement(() => getByText(container, "Error"));
+
+    expect(getByText(container, "Error")).toBeInTheDocument();
+  });
+
+  it("shows the delete error when failing to delete an existing appointment", async () => {
+    axios.delete.mockRejectedValueOnce("Error");
+    const { container, debug } = render(<Application />);
+
+    // 2. Wait until the text "Archie Cohen" is displayed.
+    await waitForElement(() => getByText(container, "Archie Cohen"));
+  
+    // 3. Click the "Delete" button on the booked appointment.
+    fireEvent.click(getAllByAltText(container, "Delete")[0]);
+
+    // 4. Check that the confirmation message is shown.
+    expect(getByText(container, "Are you sure you would like to delete?")).toBeInTheDocument();
+    const confirmation = getByTestId(container, "confirmation")
+
+    // 5. Click the "Confirm" button on the confirmation.
+    fireEvent.click(getByText(confirmation, "Confirm"));
+
+    // 6. Check that the element with the text "Deleting" is displayed.
+    expect(getByText(container, "Deleting")).toBeInTheDocument();
+
+    await waitForElement(() => getByText(container, "Error"));
+
+    expect(getByText(container, "Error")).toBeInTheDocument();
+  });
+
+
 })
