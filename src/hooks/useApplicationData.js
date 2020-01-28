@@ -15,7 +15,7 @@ export default function useApplicationData() {
 
       case SET_INTERVIEW : {
         let days = state.days.map((item, index) => {
-          if (item.appointments.includes(action.id)) {
+          if (item.appointments.includes(action.id) && !action.isEditing) {
             let spots = item.spots - 1;
             if (action.cancelling) {
                spots = item.spots + 1;
@@ -60,6 +60,10 @@ export default function useApplicationData() {
   const setDay = day => dispatch({ type: SET_DAY, value: day});
   
   function bookInterview(id, interview) {
+    let isEditing = false;
+    if (state.appointments[id].interview) {
+      isEditing = true;
+    }
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }
@@ -75,7 +79,7 @@ export default function useApplicationData() {
         if (!interview.interviewer || !interview.student) {
           throw(err)
         } else {
-          dispatch({ type: SET_INTERVIEW, value: appointments, id, cancelling: false })
+          dispatch({ type: SET_INTERVIEW, value: appointments, id, cancelling: false, isEditing })
         }
       }
     ) 
