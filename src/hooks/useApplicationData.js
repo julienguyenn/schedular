@@ -1,42 +1,8 @@
 import axios from "axios";
 import { useReducer, useEffect } from "react";
-
-const SET_DAY = "SET_DAY";
-const SET_INTERVIEW = "BOOK_INTERVIEW";
-const GET_DATA = "CANCEL_INTERVIEW";
+import reducer, { SET_DAY, SET_INTERVIEW, GET_DATA } from "reducers/application"
 
 export default function useApplicationData() {
-
-  function reducer(state, action) {
-    switch(action.type) {
-      case SET_DAY : {
-        return { ...state, day: action.value };
-      }
-
-      case SET_INTERVIEW : {
-        let days = state.days.map((item, index) => {
-          if (item.appointments.includes(action.id) && !action.isEditing) {
-            let spots = item.spots - 1;
-            if (action.cancelling) {
-               spots = item.spots + 1;
-            }
-            return {...item, spots}
-          } else {
-            return item;
-          }
-        })
-        return { ...state, appointments: action.value, days }
-      }
-
-      case GET_DATA : {
-        return {...state, ...action.value }
-      }
-
-      default: {
-        return state
-      }
-    }
-  }
 
   const [state, dispatch] = useReducer(reducer, {
     day: "Monday",
@@ -44,7 +10,6 @@ export default function useApplicationData() {
     appointments: {},
     interviewers: {}
   })
-
 
   useEffect(() => {
     Promise.all([
