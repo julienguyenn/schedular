@@ -1,9 +1,10 @@
 # Interview Scheduler
-## About
+## About 
 This is a one page application for scheduling interviews 🎉. Using React as well multiple testing frameworks has brought this project to life, creating an effortless, easy-to-use interface. Follow the setup guide to try it out for yourself! 😊
 
-## Sneak Peek
-!["Initial page when loading the site"](docs/Initial Page.png)
+## Sneak Peek 👀 
+!["Initial page when loading the site"](https://github.com/juliebede/schedular/blob/master/docs/Initial%20Page.png?raw=true)
+!["Creating an appointment on Tuesday"](https://github.com/juliebede/schedular/blob/master/docs/Making%20an%20appointment.png?raw=true)
 
 ## Setup
 
