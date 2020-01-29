@@ -1,8 +1,13 @@
 # Interview Scheduler
+## About
+This is a one page application for scheduling interviews 🎉. Using React as well multiple testing frameworks has brought this project to life, creating an effortless, easy-to-use interface. Follow the setup guide to try it out for yourself! 😊
+
+## Sneak Peek
+!["Initial page when loading the site"]()
 
 ## Setup
 
-Install dependencies with `npm install`.
+🚨 Install dependencies with `npm install`.
 
 ## Running Webpack Development Server
 
