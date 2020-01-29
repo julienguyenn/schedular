@@ -7,7 +7,16 @@ import {getInterview} from "helpers/getInterview";
 import { getInterviewersForDay } from "helpers/getInterviewersForDay";
 import useApplicationData from "hooks/useApplicationData";
 
-export default function Application(props) {  
+export default function Application(props) { 
+  const webSocket = new WebSocket("wss:http://localhost:8000/", "protocolOne");
+  webSocket.send("Here is the data")
+  webSocket.onopen = function (event) {
+    webSocket.send("Here is the data");
+  }
+  webSocket.close();
+  webSocket.onmessage = function (event) {
+    console.log(event.data)
+  }
   let { state,
         setDay,
         bookInterview,
