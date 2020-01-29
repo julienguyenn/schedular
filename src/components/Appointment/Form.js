@@ -1,26 +1,25 @@
-import React, {useState} from 'react';
+import React, { useState } from "react";
 import Button from "components/Button";
 import InterviewerList from "components/InterviewerList";
-
 
 export default function Form(props) {
   const [name, setName] = useState(props.name || "");
   const [value, setInterviewer] = useState(props.interviewer || null);
-  const [error, setError ] = useState("");
+  const [error, setError] = useState("");
 
   const reset = function() {
     setName("");
     setInterviewer(null);
-  }
+  };
 
   const cancel = function() {
     reset();
     return props.onCancel();
-  }
+  };
 
   function validate() {
     if (name === "") {
-      setError("Student name cannot be blank")
+      setError("Student name cannot be blank");
       return;
     }
     setError("");
@@ -36,24 +35,30 @@ export default function Form(props) {
             name="name"
             type="text"
             placeholder="Enter Student Name"
-            onChange={(event) => {
-              setName(event.target.value)}}
+            onChange={event => {
+              setName(event.target.value);
+            }}
             value={name}
-            data-testid = "student-name-input"
+            data-testid="student-name-input"
           />
           <section className="appointment__validation">{error}</section>
         </form>
-        <InterviewerList 
-          interviewers={props.interviewers} 
+        <InterviewerList
+          interviewers={props.interviewers}
           onChange={setInterviewer}
-          value={value} />
+          value={value}
+        />
       </section>
       <section className="appointment__card-right">
         <section className="appointment__actions">
-          <Button danger onClick={cancel}>Cancel</Button>
-          <Button confirm onClick={validate}>Save</Button>
+          <Button danger onClick={cancel}>
+            Cancel
+          </Button>
+          <Button confirm onClick={validate}>
+            Save
+          </Button>
         </section>
       </section>
     </main>
-  )
+  );
 }

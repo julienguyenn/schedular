@@ -37,7 +37,6 @@ test("getAppointmentsForDay returns an array", () => {
 
 test("getAppointmentsForDay returns an array with a length matching the number of appointments for that day", () => {
   const result = getAppointmentsForDay(state, "Monday");
-  console.log(result);
   expect(result.length).toEqual(3);
 });
 

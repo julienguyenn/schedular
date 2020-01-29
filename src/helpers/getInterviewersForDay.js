@@ -10,7 +10,7 @@ export function getInterviewersForDay(state, day) {
   for (let interviewer in state.interviewers) {
     let id = state.interviewers[interviewer].id;
     if (dayIds.includes(id)) {
-      if(interviewer) {
+      if (interviewer) {
         interviewers.push(state.interviewers[interviewer]);
       }
     }

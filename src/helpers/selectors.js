@@ -10,7 +10,7 @@ export function getAppointmentsForDay(state, day) {
   for (let appointment in state.appointments) {
     let id = state.appointments[appointment].id;
     if (dayIds.includes(id)) {
-      appointments.push(state.appointments[appointment])
+      appointments.push(state.appointments[appointment]);
     }
   }
   return appointments;

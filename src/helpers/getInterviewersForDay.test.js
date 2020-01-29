@@ -31,9 +31,21 @@ const state = {
     }
   },
   interviewers: {
-    "1":{id:1, name:"Sylvia Palmer", avatar:"https://i.imgur.com/LpaY82x.png"},
-    "2":{id:2, name:"Tori Malcolm", avatar:"https://i.imgur.com/Nmx0Qxo.png"},
-    "3":{id:3, name:"Mildred Nazir", avatar:"https://i.imgur.com/T2WwVfS.png"}
+    "1": {
+      id: 1,
+      name: "Sylvia Palmer",
+      avatar: "https://i.imgur.com/LpaY82x.png"
+    },
+    "2": {
+      id: 2,
+      name: "Tori Malcolm",
+      avatar: "https://i.imgur.com/Nmx0Qxo.png"
+    },
+    "3": {
+      id: 3,
+      name: "Mildred Nazir",
+      avatar: "https://i.imgur.com/T2WwVfS.png"
+    }
   }
 };
 
@@ -44,7 +56,6 @@ test("getInterviewersForDay returns an array", () => {
 
 test("getInterviewersByDay returns an array with a length matching the number of interviewers for that day", () => {
   const result = getInterviewersForDay(state, "Monday");
-  console.log(result);
   expect(result.length).toEqual(2);
 });
 
