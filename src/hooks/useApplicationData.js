@@ -3,7 +3,6 @@ import { useReducer, useEffect } from "react";
 import reducer, { SET_DAY, SET_INTERVIEW, GET_DATA } from "reducers/application"
 
 export default function useApplicationData() {
-
   const [state, dispatch] = useReducer(reducer, {
     day: "Monday",
     days: [],
